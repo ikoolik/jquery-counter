@@ -5,9 +5,9 @@ jquery-counter is a tiny jquery plugin that allows you to make textfields looks 
 
 parameters:
 
-# maxVal 
-# minVal
-# defaultName
-# singleName
-# twoToFourName
-# fiveToNineName
+* maxVal 
+* minVal
+* defaultName
+* singleName
+* twoToFourName
+* fiveToNineName

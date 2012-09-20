@@ -7,13 +7,11 @@ if (jQuery)(function($) {
 			//
 			// Private methods
 			//
-			var getSettings = function (el) {
-				input = el.data('input');
+			var getSettings = function (input) {
 				return input.settings;
 			};
 			
-			var setSettings = function (el, obj) {
-				input = el.data('input');
+			var setSettings = function (input, obj) {
 				var settings = input.settings;
 				for(var name in obj) {
 					if(obj.hasOwnProperty(name)) {
@@ -22,16 +20,15 @@ if (jQuery)(function($) {
 				}
 			};
 			
-			var getValue = function (el) {
-				input = el.data('input');
+			var getValue = function (input) {
 				return parseInt(input.val() || 0);
 			};
 			
-			var setValue = function (el, value) {
-				input = el.data('input');
+			var setValue = function (input, value) {
 				
 				if((input.settings.minVal == undefined || input.settings.minVal <= value) && (input.settings.maxVal == undefined || input.settings.maxVal >= value)){
 					var oldVal = getValue(input);
+					var name = getItemName(input, value);
 					
 					if(value === 0) { //value becomes 0
 						input.screen.addClass('ui-counter-value-empty');
@@ -39,20 +36,40 @@ if (jQuery)(function($) {
 						input.screen.removeClass('ui-counter-value-empty');
 					}
 					input.val(value);
-					input.screen.html(value);
+					
+					var text = value + ((name) ? ' ' + name : '');
+					input.screen.html(text);
 					if(oldVal !== value) {
 						input.trigger('change');
 					}
 				}
 			};
 			
-			var increaseValue = function (el) {
-				input = el.data('input');
+			var getItemName = function (input, count) {
+				var defaultName = input.settings.defaultName || '';
+				
+				var twoDig = count % 100;
+				if(twoDig > 4 && twoDig < 21) { //5 - 20 столов
+					var name = input.settings.fiveToNineName;
+				} else {
+					var oneDig = twoDig % 10;
+					if(oneDig == 1){ //х1 стол
+						var name = input.settings.singleName;
+					}else if(oneDig >1 && oneDig < 5){ //х2 - х4 стола
+						var name = input.settings.twoToFourName;
+					}else{ //х5 - х9 столов (х > 1)
+						var name = input.settings.fiveToNineName;
+						
+					}
+				}
+				return name || defaultName;
+			};
+			
+			var increaseValue = function (input) {
 				setValue(input, getValue(input) + 1);
 			};
 			
-			var decreaseValue = function (el) {
-				input = el.data('input');
+			var decreaseValue = function (input) {
 				setValue(input, getValue(input) - 1);
 			};
 			
@@ -63,9 +80,9 @@ if (jQuery)(function($) {
 					screenContainer = $('<div class="ui-counter-value"></div>').append(screen),
 					container = $('<div class="ui-counter-container"></div>').append(decreaseControl).append(screenContainer).append(increaseControl);
 				
-				input.data('input', input);
 				input.screen = screen;
 				input.settings = settings || {};
+				input.data('input', input);
 				
 				increaseControl.click(function (e) {
 					increaseValue(input);
@@ -88,6 +105,7 @@ if (jQuery)(function($) {
 			//
 			// Public methods
 			//
+			var input = this.data('input') || this;
 			switch(method) {
 				case 'value' :
 					if(data) {

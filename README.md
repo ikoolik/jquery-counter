@@ -1,6 +1,12 @@
 jquery-counter
 ==============
 
-!
+jquery-counter is a tiny jquery plugin that allows you to make textfields looks like counters with plus/minus buttons
 
-little jquery plugin for counter ui-tool realization
+parameters:
+maxVal
+minVal
+defaultName
+singleName
+twoToFourName
+fiveToNineName

@@ -92,7 +92,6 @@ if (jQuery)(function($) {
 					decreaseValue(input);
 				});
 				
-				
 				setValue(input, getValue(input));
 				
 				container.width(input.width());

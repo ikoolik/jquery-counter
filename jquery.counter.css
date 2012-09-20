@@ -16,6 +16,9 @@
 	background: #ccc;
 	width: 25px;
 	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-khtml-user-select: none;
 }
 
 .ui-counter-value {

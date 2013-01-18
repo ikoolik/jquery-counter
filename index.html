@@ -4,19 +4,26 @@
 <meta charset="utf-8">
 <title>jquery counter plugin</title>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
-<script src="jquery.counter.js"></script>
-<link rel="stylesheet" href="jquery.counter.css">
+<script src="./counter.jquery.js"></script>
+<link rel="stylesheet" href="./counter.jquery.css">
 </head>
 <body>
 <input type="text" id="counter">
+<input type="text" id="counter_ru">
 <script>
 	$('document').ready( function () {
+		$("#counter_ru").counter({
+			minVal: -10,
+			maxVal: 10,
+			singleName: 'попугай',
+			twoToFourName: 'попугая',
+			fiveToNineName: 'попугаев'
+		});
 		$("#counter").counter({
 			minVal: 0,
 			maxVal: 10,
-			singleName: 'попугой',
-			twoToFourName: 'попугая',
-			fiveToNineName: 'попугаев'
+			singleName: 'parrot',
+			defaultName: 'parrots'
 		});
 	});
 </script>

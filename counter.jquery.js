@@ -48,16 +48,16 @@ if (jQuery)(function($) {
 			var getItemName = function (input, count) {
 				var defaultName = input.settings.defaultName || '';
 				
-				var twoDig = count % 100;
-				if(twoDig > 4 && twoDig < 21) { //5 - 20 столов
+				var twoDig = Math.abs(count) % 100;
+				if(twoDig > 4 && twoDig < 21) { // 5 - 20
 					var name = input.settings.fiveToNineName;
 				} else {
 					var oneDig = twoDig % 10;
-					if(oneDig == 1){ //х1 стол
+					if(oneDig == 1){ // 1
 						var name = input.settings.singleName;
-					}else if(oneDig >1 && oneDig < 5){ //х2 - х4 стола
+					}else if(oneDig >1 && oneDig < 5){ // 2 - 4
 						var name = input.settings.twoToFourName;
-					}else{ //х5 - х9 столов (х > 1)
+					}else{ // 5 - 10
 						var name = input.settings.fiveToNineName;
 						
 					}

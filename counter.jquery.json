@@ -1,0 +1,24 @@
+{
+	"name": "counter",
+	"title": "jQuery Counter",
+	"description" : "plugin allows you to make text-input element to be a counter with plus/minus buttons. Also, you can add a word to current number",
+	"version": "0.0.1",
+	"author": {
+		"name": "ikoolik",
+		"email": "ikoolik@gmail.com"
+	},
+	"licenses": [
+		{
+			"type": "MIT",
+      		"url": "http://opensource.org/licenses/MIT"
+		}
+	],
+	"keywords" : [
+		"form",
+		"ui",
+		"counter"
+	],
+	"dependencies": {
+    	"jquery": ">=1.5"
+  	}
+}
